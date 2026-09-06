@@ -1,0 +1,96 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.item_default": {
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "variable.is_enchanted ? Material.enchanted : Material.default" }
+      ],
+      "textures": ["Texture.default", "Texture.enchanted"],
+      "part_visibility": [
+        { "*": "!c.owning_entity->v.kittie_cat_visible || c.is_first_person" }
+      ]
+    },
+    "controller.render.item_sprite": {
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": ["Texture.default"],
+      "filter_lighting": true,
+      "part_visibility": [
+        { "*": "!c.owning_entity->v.kittie_cat_visible || c.is_first_person" }
+      ]
+    },
+    "controller.render.shield": {
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "variable.is_patterned ? (variable.is_enchanted ? Material.pattern_enchanted : Material.pattern) : (variable.is_enchanted ? Material.enchanted : Material.default)" }
+      ],
+      "textures": ["Texture.default", "Texture.enchanted", "Texture.pattern"],
+      "part_visibility": [
+        { "*": "!c.owning_entity->v.kittie_cat_visible || c.is_first_person" }
+      ]
+    },
+    "controller.render.bow": {
+      "arrays": {
+        "textures": {
+          "array.bow_texture_frames": [
+            "Texture.default",
+            "Texture.bow_pulling_0",
+            "Texture.bow_pulling_1",
+            "Texture.bow_pulling_2"
+          ]
+        },
+        "geometries": {
+          "array.bow_geo_frames": [
+            "Geometry.default",
+            "Geometry.bow_pulling_0",
+            "Geometry.bow_pulling_1",
+            "Geometry.bow_pulling_2"
+          ]
+        }
+      },
+      "geometry": "array.bow_geo_frames[query.get_animation_frame]",
+      "materials": [
+        { "*": "variable.is_enchanted ? Material.enchanted : Material.default" }
+      ],
+      "textures": ["array.bow_texture_frames[query.get_animation_frame]", "Texture.enchanted"],
+      "part_visibility": [
+        { "*": "!c.owning_entity->v.kittie_cat_visible || c.is_first_person" }
+      ]
+    },
+    "controller.render.crossbow": {
+      "arrays": {
+        "textures": {
+          "array.crossbow_texture_frames": [
+            "Texture.default",
+            "Texture.crossbow_pulling_0",
+            "Texture.crossbow_pulling_1",
+            "Texture.crossbow_pulling_2",
+            "Texture.crossbow_arrow",
+            "Texture.crossbow_rocket"
+          ]
+        },
+        "geometries": {
+          "array.crossbow_geo_frames": [
+            "Geometry.default",
+            "Geometry.crossbow_pulling_0",
+            "Geometry.crossbow_pulling_1",
+            "Geometry.crossbow_pulling_2",
+            "Geometry.crossbow_arrow",
+            "Geometry.crossbow_rocket"
+          ]
+        }
+      },
+      "geometry": "array.crossbow_geo_frames[query.get_animation_frame]",
+      "materials": [
+        { "*": "variable.is_enchanted ? Material.enchanted : Material.default" }
+      ],
+      "textures": ["array.crossbow_texture_frames[query.get_animation_frame]", "Texture.enchanted"],
+      "part_visibility": [
+        { "*": "!c.owning_entity->v.kittie_cat_visible || c.is_first_person" }
+      ]
+    }
+  }
+}

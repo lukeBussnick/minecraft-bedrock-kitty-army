@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "kittie:departure_waypoint",
+      "materials": { "default": "entity_alphatest" },
+      "textures": { "default": "textures/entity/kittie_collar_invisible" },
+      "geometry": { "default": "geometry.kittie.empty_waypoint" },
+      "render_controllers": ["controller.render.kittie_army_cat"]
+    }
+  }
+}

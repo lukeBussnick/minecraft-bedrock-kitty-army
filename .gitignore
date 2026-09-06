@@ -1,0 +1,26 @@
+# Local build, deployment, and visual-review output.
+.forge/
+backups/
+dist/
+*.mcaddon
+*.mcpack
+*.zip
+
+# Local-only vanilla reference inputs used by historical generators.
+source_art/cat_geometry_source.geo.json
+source_art/tuxedo_layout_source.png
+
+# Internal agent handoffs and implementation review notes.
+AGENTS.md
+KITTY_ARMY_NAVIGATION_REVIEW.md
+KITTY_TRANSFORMATION_HANDOFF.md
+KITTY_TRANSFORMATION_SOL_PROMPT.md
+OUTWARD_ROUTES_1_6_5.md
+SCATTER_FIX_1_6_4.md
+art_preview.png
+
+# Tooling noise.
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db

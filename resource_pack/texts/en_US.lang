@@ -1,0 +1,8 @@
+pack.name=Kitty Army
+pack.description=Blow the Kitty Whistle and call a swarm of pink-eyed tuxedo cats!
+item.kittie:kittie_whistle.name=Kitty Whistle
+item.kittie:kittie_collar.name=Kitty Transformation Collar
+entity.kittie:army_cat.name=Kitty Army Cat
+message.kittie.army_called=§dMrrrreee-weet! §fThe Kitty Army is coming!
+message.kittie.army_dismissed=§dPrrrp-weet! §fKitty Army, home you go!
+message.kittie.army_departing=§7The kitties are still scampering home...

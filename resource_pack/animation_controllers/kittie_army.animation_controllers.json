@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.kittie_army.look": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": ["look_at_target"]
+        }
+      }
+    },
+    "controller.animation.kittie_army.locomotion": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [
+            { "run": "query.modified_move_speed > 0.28" },
+            { "walk": "query.modified_move_speed > 0.01" }
+          ]
+        },
+        "walk": {
+          "animations": ["walk"],
+          "transitions": [
+            { "run": "query.modified_move_speed > 0.28" },
+            { "idle": "query.modified_move_speed <= 0.01" }
+          ]
+        },
+        "run": {
+          "animations": ["run"],
+          "transitions": [
+            { "idle": "query.modified_move_speed <= 0.01" },
+            { "walk": "query.modified_move_speed <= 0.28" }
+          ]
+        }
+      }
+    }
+  }
+}

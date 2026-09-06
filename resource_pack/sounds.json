@@ -1,0 +1,16 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "kittie:army_cat": {
+        "volume": 0.65,
+        "pitch": [1.05, 1.22],
+        "events": {
+          "ambient": "mob.cat.meow",
+          "hurt": "mob.cat.hurt",
+          "death": "mob.cat.death"
+        }
+      }
+    }
+  }
+}
+

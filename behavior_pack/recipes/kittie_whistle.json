@@ -1,0 +1,18 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "kittie:recipe_kittie_whistle"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:copper_ingot" },
+      { "item": "minecraft:feather" },
+      { "item": "minecraft:dye", "data": 9 }
+    ],
+    "result": {
+      "item": "kittie:kittie_whistle",
+      "count": 1
+    }
+  }
+}

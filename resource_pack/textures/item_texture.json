@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "Kitty Army",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "kittie_whistle": {
+      "textures": "textures/items/kittie_whistle"
+    },
+    "kittie_collar": {
+      "textures": "textures/items/kittie_collar"
+    }
+  }
+}

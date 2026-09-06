@@ -1,0 +1,27 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "kittie:army_cat",
+      "materials": {
+        "default": "cat"
+      },
+      "textures": {
+        "default": "textures/entity/kittie_army_cat"
+      },
+      "geometry": {
+        "default": "geometry.kittie_army.cat"
+      },
+      "animations": {
+        "look_at_target": "animation.common.look_at_target",
+        "walk": "animation.kittie_army.walk",
+        "run": "animation.kittie_army.run"
+      },
+      "animation_controllers": [
+        { "look": "controller.animation.kittie_army.look" },
+        { "locomotion": "controller.animation.kittie_army.locomotion" }
+      ],
+      "render_controllers": ["controller.render.kittie_army_cat"]
+    }
+  }
+}

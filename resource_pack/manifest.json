@@ -1,0 +1,21 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Kitty Army Resource Pack",
+    "description": "Pink-eyed tuxedo cats, player kitty transformation, whistle art, particles, and sound.",
+    "uuid": "65e4fe8a-d822-490d-a4e2-84cf629ed75e",
+    "version": [1, 6, 5],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "86f0c6c6-c8e4-474e-a9b8-2bdc31a1d26e",
+      "version": [1, 6, 5]
+    }
+  ],
+  "metadata": {
+    "authors": ["OpenAI Codex for Isabelle"],
+    "product_type": "addon"
+  }
+}

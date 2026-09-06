@@ -1,0 +1,59 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.kittie_player.human": {
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": ["Texture.default"],
+      "part_visibility": [
+        { "*": true },
+        { "helmet": "variable.helmet_layer_visible" },
+        { "leftLegging": "variable.leg_layer_visible" },
+        { "rightLegging": "variable.leg_layer_visible" },
+        { "leftBoot": "variable.boot_layer_visible" },
+        { "rightBoot": "variable.boot_layer_visible" },
+        { "leftSock": "variable.boot_layer_visible && variable.leg_layer_visible" },
+        { "rightSock": "variable.boot_layer_visible && variable.leg_layer_visible" },
+        { "bodyArmor": "variable.chest_layer_visible && !query.has_cape" },
+        { "leftArmArmor": "variable.chest_layer_visible && !query.has_cape" },
+        { "rightArmArmor": "variable.chest_layer_visible && !query.has_cape" },
+        { "belt": "variable.chest_layer_visible && variable.leg_layer_visible" }
+      ],
+      "color": {
+        "r": "variable.kittie_human_tint",
+        "g": "variable.kittie_human_tint",
+        "b": "variable.kittie_human_tint",
+        "a": 1.0
+      }
+    },
+    "controller.render.kittie_player.cat": {
+      "geometry": "Geometry.kittie",
+      "materials": [
+        { "*": "Material.kittie" }
+      ],
+      "textures": ["Texture.kittie"],
+      "color": {
+        "r": "variable.kittie_cat_tint",
+        "g": "variable.kittie_cat_tint",
+        "b": "variable.kittie_cat_tint",
+        "a": 1.0
+      }
+    },
+    "controller.render.player.first_person": {
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": ["Texture.default"],
+      "part_visibility": [
+        { "*": false },
+        { "rightArm": "!variable.kittie_target && (query.get_equipped_item_name(0, 1) == '' || query.get_equipped_item_name(0, 1) == 'filled_map')" },
+        { "rightSleeve": "!variable.kittie_target && (query.get_equipped_item_name(0, 1) == '' || query.get_equipped_item_name(0, 1) == 'filled_map')" },
+        { "leftArm": "!variable.kittie_target && ((query.get_equipped_item_name(0, 1) == 'filled_map' && query.get_equipped_item_name('off_hand') != 'shield') || (query.get_equipped_item_name('off_hand') == 'filled_map' && !query.item_is_charged) || (!query.item_is_charged && (variable.item_use_normalized > 0 && variable.item_use_normalized < 1.0)))" },
+        { "leftSleeve": "!variable.kittie_target && ((query.get_equipped_item_name(0, 1) == 'filled_map' && query.get_equipped_item_name('off_hand') != 'shield') || (query.get_equipped_item_name('off_hand') == 'filled_map' && !query.item_is_charged) || (!query.item_is_charged && (variable.item_use_normalized > 0 && variable.item_use_normalized < 1.0)))" }
+      ]
+    }
+  }
+}

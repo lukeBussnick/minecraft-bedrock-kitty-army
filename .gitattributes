@@ -1,0 +1,13 @@
+* text=auto
+
+*.json text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.md text eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.py text eol=lf
+*.lang text eol=lf
+*.png binary
+*.wav binary
+*.mcaddon binary

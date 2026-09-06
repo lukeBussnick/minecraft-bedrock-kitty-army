@@ -1,0 +1,18 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "kittie:recipe_kittie_collar"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:leather" },
+      { "item": "minecraft:string" },
+      { "item": "minecraft:dye", "data": 9 }
+    ],
+    "result": {
+      "item": "kittie:kittie_collar",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Kitty Army Behavior Pack",
+    "description": "Call the Kitty Army or wear the collar to become the approved tuxedo kitty.",
+    "uuid": "bc6cc1ae-4bf4-4f28-885a-8c2203053cb6",
+    "version": [1, 6, 5],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "261fce8f-6a08-4ab4-b837-8ad4d725ec95",
+      "version": [1, 6, 5]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "c014a8be-7477-4c8a-b052-e7b7f88361ad",
+      "version": [1, 6, 5]
+    }
+  ],
+  "capabilities": ["script_eval"],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    },
+    {
+      "uuid": "65e4fe8a-d822-490d-a4e2-84cf629ed75e",
+      "version": [1, 6, 5]
+    }
+  ],
+  "metadata": {
+    "authors": ["OpenAI Codex for Isabelle"],
+    "product_type": "addon"
+  }
+}

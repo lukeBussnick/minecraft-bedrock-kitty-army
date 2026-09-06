@@ -1,0 +1,6652 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "kittie:army_cat",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "spawn_category": "creature"
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "kittie_army",
+          "cat",
+          "mob"
+        ]
+      },
+      "minecraft:health": {
+        "value": 16,
+        "max": 16
+      },
+      "minecraft:attack_damage": {
+        "value": 3
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 0.7
+      },
+      "minecraft:scale": {
+        "value": 0.8
+      },
+      "minecraft:movement": {
+        "value": 0.32
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:navigation.walk": {
+        "avoid_damage_blocks": true,
+        "avoid_water": true,
+        "can_float": true,
+        "can_jump": true,
+        "can_open_doors": false,
+        "can_pass_doors": true
+      },
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:damage_sensor": {
+        "triggers": {
+          "cause": "fall",
+          "deals_damage": "no"
+        }
+      },
+      "minecraft:persistent": {},
+      "minecraft:nameable": {},
+      "minecraft:tameable": {
+        "probability": 0.0,
+        "tame_items": [
+          "minecraft:cod"
+        ],
+        "tame_event": {
+          "event": "kittie:activate",
+          "target": "self"
+        }
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 8,
+        "probability": 0.04
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      }
+    },
+    "component_groups": {
+      "kittie:active": {
+        "minecraft:is_tamed": {},
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "reselect_targets": true,
+          "attack_owner": false,
+          "scan_interval": 10,
+          "within_radius": 22,
+          "entity_types": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "monster"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "operator": "!=",
+                    "value": "kittie_army"
+                  }
+                ]
+              },
+              "max_dist": 18,
+              "must_see": true,
+              "sprint_speed_multiplier": 1.15,
+              "walk_speed_multiplier": 1.0
+            }
+          ]
+        },
+        "minecraft:behavior.ocelotattack": {
+          "priority": 2,
+          "walk_speed_multiplier": 0.85,
+          "sprint_speed_multiplier": 1.2,
+          "sneak_speed_multiplier": 0.7
+        },
+        "minecraft:behavior.follow_owner": {
+          "priority": 3,
+          "speed_multiplier": 1.1,
+          "start_distance": 5,
+          "stop_distance": 2,
+          "can_teleport": false,
+          "max_distance": 48
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 7,
+          "speed_multiplier": 0.8
+        }
+      },
+      "kittie:departing": {
+        "minecraft:movement": {
+          "value": 0.36
+        }
+      },
+      "kittie:depart_flee": {},
+      "kittie:route_0": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_0"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_1": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_1"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_2": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_2"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_3": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_3"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_4": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_4"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_5": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_5"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_6": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_6"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_7": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_7"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_8": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_8"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_9": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_9"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_10": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_10"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_11": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_11"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_12": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_12"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_13": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_13"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_14": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_14"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_15": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_15"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_16": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_16"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_17": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_17"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_18": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_18"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_19": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_19"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_20": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_20"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_21": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_21"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_22": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_22"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_23": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_23"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_24": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_24"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_25": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_25"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_26": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_26"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_27": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_27"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_28": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_28"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_29": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_29"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_30": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_30"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_31": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_31"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_32": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_32"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_33": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_33"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_34": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_34"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_35": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_35"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_36": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_36"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_37": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_37"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_38": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_38"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_39": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_39"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_40": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_40"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_41": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_41"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_42": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_42"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_43": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_43"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_44": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_44"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_45": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_45"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_46": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_46"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_47": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_47"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_48": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_48"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_49": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_49"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_50": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_50"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_51": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_51"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_52": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_52"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_53": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_53"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_54": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_54"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_55": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_55"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_56": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_56"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_57": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_57"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_58": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_58"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_59": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_59"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_60": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_60"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_61": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_61"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_62": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_62"
+              }
+            ]
+          }
+        }
+      },
+      "kittie:route_63": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.35,
+          "search_range": 16,
+          "stop_distance": 0.75,
+          "use_home_position_restriction": false,
+          "filters": {
+            "all_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "kittie_waypoint"
+              },
+              {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "kittie_route_63"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "events": {
+      "kittie:activate": {
+        "remove": {
+          "component_groups": [
+            "kittie:departing",
+            "kittie:depart_flee",
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:active"
+          ]
+        }
+      },
+      "kittie:depart": {
+        "remove": {
+          "component_groups": [
+            "kittie:active",
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:departing",
+            "kittie:depart_flee"
+          ]
+        }
+      },
+      "kittie:restart_flee_off": {
+        "remove": {
+          "component_groups": [
+            "kittie:depart_flee",
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        }
+      },
+      "kittie:restart_flee_on": {
+        "add": {
+          "component_groups": [
+            "kittie:depart_flee"
+          ]
+        }
+      },
+      "kittie:route_0": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_0"
+          ]
+        }
+      },
+      "kittie:route_1": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_1"
+          ]
+        }
+      },
+      "kittie:route_2": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_2"
+          ]
+        }
+      },
+      "kittie:route_3": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_3"
+          ]
+        }
+      },
+      "kittie:route_4": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_4"
+          ]
+        }
+      },
+      "kittie:route_5": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_5"
+          ]
+        }
+      },
+      "kittie:route_6": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_6"
+          ]
+        }
+      },
+      "kittie:route_7": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_7"
+          ]
+        }
+      },
+      "kittie:route_8": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_8"
+          ]
+        }
+      },
+      "kittie:route_9": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_9"
+          ]
+        }
+      },
+      "kittie:route_10": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_10"
+          ]
+        }
+      },
+      "kittie:route_11": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_11"
+          ]
+        }
+      },
+      "kittie:route_12": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_12"
+          ]
+        }
+      },
+      "kittie:route_13": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_13"
+          ]
+        }
+      },
+      "kittie:route_14": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_14"
+          ]
+        }
+      },
+      "kittie:route_15": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_15"
+          ]
+        }
+      },
+      "kittie:route_16": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_16"
+          ]
+        }
+      },
+      "kittie:route_17": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_17"
+          ]
+        }
+      },
+      "kittie:route_18": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_18"
+          ]
+        }
+      },
+      "kittie:route_19": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_19"
+          ]
+        }
+      },
+      "kittie:route_20": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_20"
+          ]
+        }
+      },
+      "kittie:route_21": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_21"
+          ]
+        }
+      },
+      "kittie:route_22": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_22"
+          ]
+        }
+      },
+      "kittie:route_23": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_23"
+          ]
+        }
+      },
+      "kittie:route_24": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_24"
+          ]
+        }
+      },
+      "kittie:route_25": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_25"
+          ]
+        }
+      },
+      "kittie:route_26": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_26"
+          ]
+        }
+      },
+      "kittie:route_27": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_27"
+          ]
+        }
+      },
+      "kittie:route_28": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_28"
+          ]
+        }
+      },
+      "kittie:route_29": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_29"
+          ]
+        }
+      },
+      "kittie:route_30": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_30"
+          ]
+        }
+      },
+      "kittie:route_31": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_31"
+          ]
+        }
+      },
+      "kittie:route_32": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_32"
+          ]
+        }
+      },
+      "kittie:route_33": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_33"
+          ]
+        }
+      },
+      "kittie:route_34": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_34"
+          ]
+        }
+      },
+      "kittie:route_35": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_35"
+          ]
+        }
+      },
+      "kittie:route_36": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_36"
+          ]
+        }
+      },
+      "kittie:route_37": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_37"
+          ]
+        }
+      },
+      "kittie:route_38": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_38"
+          ]
+        }
+      },
+      "kittie:route_39": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_39"
+          ]
+        }
+      },
+      "kittie:route_40": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_40"
+          ]
+        }
+      },
+      "kittie:route_41": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_41"
+          ]
+        }
+      },
+      "kittie:route_42": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_42"
+          ]
+        }
+      },
+      "kittie:route_43": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_43"
+          ]
+        }
+      },
+      "kittie:route_44": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_44"
+          ]
+        }
+      },
+      "kittie:route_45": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_45"
+          ]
+        }
+      },
+      "kittie:route_46": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_46"
+          ]
+        }
+      },
+      "kittie:route_47": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_47"
+          ]
+        }
+      },
+      "kittie:route_48": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_48"
+          ]
+        }
+      },
+      "kittie:route_49": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_49"
+          ]
+        }
+      },
+      "kittie:route_50": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_50"
+          ]
+        }
+      },
+      "kittie:route_51": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_51"
+          ]
+        }
+      },
+      "kittie:route_52": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_52"
+          ]
+        }
+      },
+      "kittie:route_53": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_53"
+          ]
+        }
+      },
+      "kittie:route_54": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_54"
+          ]
+        }
+      },
+      "kittie:route_55": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_55"
+          ]
+        }
+      },
+      "kittie:route_56": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_56"
+          ]
+        }
+      },
+      "kittie:route_57": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_57"
+          ]
+        }
+      },
+      "kittie:route_58": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_58"
+          ]
+        }
+      },
+      "kittie:route_59": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_59"
+          ]
+        }
+      },
+      "kittie:route_60": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_60"
+          ]
+        }
+      },
+      "kittie:route_61": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_61"
+          ]
+        }
+      },
+      "kittie:route_62": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_62"
+          ]
+        }
+      },
+      "kittie:route_63": {
+        "remove": {
+          "component_groups": [
+            "kittie:route_0",
+            "kittie:route_1",
+            "kittie:route_2",
+            "kittie:route_3",
+            "kittie:route_4",
+            "kittie:route_5",
+            "kittie:route_6",
+            "kittie:route_7",
+            "kittie:route_8",
+            "kittie:route_9",
+            "kittie:route_10",
+            "kittie:route_11",
+            "kittie:route_12",
+            "kittie:route_13",
+            "kittie:route_14",
+            "kittie:route_15",
+            "kittie:route_16",
+            "kittie:route_17",
+            "kittie:route_18",
+            "kittie:route_19",
+            "kittie:route_20",
+            "kittie:route_21",
+            "kittie:route_22",
+            "kittie:route_23",
+            "kittie:route_24",
+            "kittie:route_25",
+            "kittie:route_26",
+            "kittie:route_27",
+            "kittie:route_28",
+            "kittie:route_29",
+            "kittie:route_30",
+            "kittie:route_31",
+            "kittie:route_32",
+            "kittie:route_33",
+            "kittie:route_34",
+            "kittie:route_35",
+            "kittie:route_36",
+            "kittie:route_37",
+            "kittie:route_38",
+            "kittie:route_39",
+            "kittie:route_40",
+            "kittie:route_41",
+            "kittie:route_42",
+            "kittie:route_43",
+            "kittie:route_44",
+            "kittie:route_45",
+            "kittie:route_46",
+            "kittie:route_47",
+            "kittie:route_48",
+            "kittie:route_49",
+            "kittie:route_50",
+            "kittie:route_51",
+            "kittie:route_52",
+            "kittie:route_53",
+            "kittie:route_54",
+            "kittie:route_55",
+            "kittie:route_56",
+            "kittie:route_57",
+            "kittie:route_58",
+            "kittie:route_59",
+            "kittie:route_60",
+            "kittie:route_61",
+            "kittie:route_62",
+            "kittie:route_63"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "kittie:route_63"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.kittie_player.look": {
+      "initial_state": "active",
+      "states": {
+        "active": {
+          "animations": ["kittie_look_clip"]
+        }
+      }
+    },
+    "controller.animation.kittie_player.locomotion": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [
+            { "run": "query.is_on_ground && !query.is_riding && !query.is_sleeping && !query.is_swimming && !query.is_gliding && query.is_sprinting && query.modified_move_speed > 0.01" },
+            { "walk": "query.is_on_ground && !query.is_riding && !query.is_sleeping && !query.is_gliding && query.modified_move_speed > 0.01" }
+          ]
+        },
+        "walk": {
+          "animations": [
+            { "kittie_walk": "query.is_swimming ? 0.35 : 1.0" }
+          ],
+          "transitions": [
+            { "run": "query.is_on_ground && !query.is_riding && !query.is_sleeping && !query.is_swimming && !query.is_gliding && query.is_sprinting && query.modified_move_speed > 0.01" },
+            { "idle": "!query.is_on_ground || query.is_riding || query.is_sleeping || query.is_gliding || query.modified_move_speed <= 0.01" }
+          ]
+        },
+        "run": {
+          "animations": ["kittie_run"],
+          "transitions": [
+            { "idle": "!query.is_on_ground || query.is_riding || query.is_sleeping || query.is_gliding || query.modified_move_speed <= 0.01" },
+            { "walk": "!query.is_sprinting || query.is_swimming" }
+          ]
+        }
+      }
+    }
+  }
+}
